@@ -22,9 +22,9 @@ const Home = () => {
     { value: 'other', label: 'Other' }
   ];
 
-  useEffect(() => {
-    fetchEvents();
-  }, []);
+  // useEffect(() => {
+  //   fetchEvents();
+  // }, []);
 
   useEffect(() => {
     filterEvents();
