@@ -37,7 +37,7 @@ const AdminDashboard = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('/api/events');
+      const response = await axios.get('https://eventsdepploy.onrender.com/api/events');
       setEvents(response.data);
     } catch (error) {
       console.error('Error fetching events:', error);
@@ -91,10 +91,10 @@ const AdminDashboard = () => {
       };
 
       if (editingEvent) {
-        await axios.put(`/api/events/${editingEvent._id}`, eventData);
+        await axios.put(`https://eventsdepploy.onrender.com/api/events/${editingEvent._id}`, eventData);
         toast.success('Event updated successfully');
       } else {
-        await axios.post('/api/events', eventData);
+        await axios.post('https://eventsdepploy.onrender.com/api/events', eventData);
         toast.success('Event created successfully');
       }
 
@@ -127,7 +127,7 @@ const AdminDashboard = () => {
     }
 
     try {
-      await axios.delete(`/api/events/${eventId}`);
+      await axios.delete(`https://eventsdepploy.onrender.com/api/events/${eventId}`);
       toast.success('Event deleted successfully');
       fetchEvents();
     } catch (error) {

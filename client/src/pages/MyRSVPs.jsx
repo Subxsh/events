@@ -15,7 +15,7 @@ const MyRSVPs = () => {
 
   const fetchMyRSVPs = async () => {
     try {
-      const response = await axios.get('/api/rsvp/my-rsvps');
+      const response = await axios.get('https://eventsdepploy.onrender.com/api/rsvp/my-rsvps');
       setRsvps(response.data);
     } catch (error) {
       console.error('Error fetching RSVPs:', error);
@@ -31,7 +31,7 @@ const MyRSVPs = () => {
     }
 
     try {
-      await axios.delete(`/api/rsvp/${rsvpId}`);
+      await axios.delete(`https://eventsdepploy.onrender.com/api/rsvp/${rsvpId}`);
       toast.success('RSVP cancelled successfully');
       fetchMyRSVPs(); // Refresh the list
     } catch (error) {

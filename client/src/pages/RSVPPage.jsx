@@ -24,7 +24,7 @@ const PaymentForm = ({ event, onSuccess }) => {
   const createRSVPAndPaymentIntent = async () => {
     try {
       // First create RSVP
-      const rsvpResponse = await axios.post('/api/rsvp', {
+      const rsvpResponse = await axios.post('https://eventsdepploy.onrender.com/api/rsvp', {
         eventId: event._id,
         notes: ''
       });
@@ -34,7 +34,7 @@ const PaymentForm = ({ event, onSuccess }) => {
 
       // Then create payment intent if event is paid
       if (event.isPaid) {
-        const paymentResponse = await axios.post('/api/payment/create-payment-intent', {
+        const paymentResponse = await axios.post('https://eventsdepploy.onrender.com/api/payment/create-payment-intent', {
           rsvpId: newRsvpId
         });
         setClientSecret(paymentResponse.data.clientSecret);
@@ -68,7 +68,7 @@ const PaymentForm = ({ event, onSuccess }) => {
     } else if (paymentIntent.status === 'succeeded') {
       // Confirm payment on backend
       try {
-        await axios.post('/api/payment/confirm-payment', {
+        await axios.post('https://eventsdepploy.onrender.com/api/payment/confirm-payment', {
           paymentIntentId: paymentIntent.id
         });
         toast.success('Payment successful! RSVP confirmed.');
@@ -152,7 +152,7 @@ const RSVPPage = () => {
 
   const fetchEvent = async () => {
     try {
-      const response = await axios.get(`/api/events/${eventId}`);
+      const response = await axios.get(`https://eventsdepploy.onrender.com/api/events/${eventId}`);
       setEvent(response.data);
     } catch (error) {
       console.error('Error fetching event:', error);
@@ -165,7 +165,7 @@ const RSVPPage = () => {
 
   const handleFreeRSVP = async () => {
     try {
-      await axios.post('/api/rsvp', {
+      await axios.post('https://eventsdepploy.onrender.com/api/rsvp', {
         eventId: event._id,
         notes
       });

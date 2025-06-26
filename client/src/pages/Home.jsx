@@ -32,8 +32,9 @@ const Home = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('/api/events');
+      const response = await axios.get('https://eventsdepploy.onrender.com/api/events');
       setEvents(response.data);
+      console.log('Fetched events:', response.data);
     } catch (error) {
       console.error('Error fetching events:', error);
     } finally {
