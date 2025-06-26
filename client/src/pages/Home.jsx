@@ -22,9 +22,9 @@ const Home = () => {
     { value: 'other', label: 'Other' }
   ];
 
-  // useEffect(() => {
-  //   fetchEvents();
-  // }, []);
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   useEffect(() => {
     filterEvents();
@@ -32,8 +32,9 @@ const Home = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('/api/events');
+      const response = await axios.get('http://localhost:5000/api/events');
       setEvents(response.data);
+      
     } catch (error) {
       console.error('Error fetching events:', error);
     } finally {
